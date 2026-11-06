@@ -4,7 +4,7 @@ import FeaturedCard from "../components/FeaturedCard";
 import { categories, featuredItems } from "../data/data";
 import { Link } from "@react-navigation/native";
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({ navigation }) {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
@@ -31,7 +31,7 @@ export default function HomeScreen({navigation}) {
             <View style={styles.section}>
                 <Text style={styles.sectionTitle}>Categories</Text>
                 {categories.map((category) => (
-                    <Link screen="Category" params={{ categoryId: category.id }}>
+                    <Link screen="Category" params={{ categoryId: category.id, categoryName: category.title }} style={{ marginBottom: 12, }}>
                         <CategoryCard key={category.id} title={category.title} />
                     </Link>
                 ))}

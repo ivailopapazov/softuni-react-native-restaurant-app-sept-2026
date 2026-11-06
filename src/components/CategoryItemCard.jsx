@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 
 export default function CategoryItemCard({
     name,
@@ -13,6 +13,11 @@ export default function CategoryItemCard({
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.subtitle}>{description}</Text>
                 <Text style={styles.price}>${price}</Text>
+            </View>
+            <View style={styles.rightAction}>
+                <Pressable style={styles.addButton}>
+                    <Text style={styles.addButtonText}>Add</Text>
+                </Pressable>
             </View>
         </View>
     );
@@ -68,5 +73,16 @@ const styles = StyleSheet.create({
     },
     rightAction: {
         paddingRight: 12,
+    },
+    addButton: {
+        backgroundColor: '#007AFF',
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        borderRadius: 8,
+    },
+    addButtonText: {
+        color: '#fff',
+        fontWeight: '600',
+        fontSize: 14,
     },
 });
