@@ -19,6 +19,7 @@ export default function CategoryScreen({
                 <CategoryItemCard
                     key={item.id}
                     {...item}
+                    onPress={() => navigation.navigate("Details", { item })}
                 />
             ))}
         </View>
