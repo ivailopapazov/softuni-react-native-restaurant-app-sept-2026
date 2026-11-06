@@ -200,3 +200,5 @@ export const categories = [
 export const featuredItems = menuItems.filter((item) =>
   ['item-1', 'item-5', 'item-9', 'item-16', 'item-19'].includes(item.id)
 );
+
+export const getCategoryItems = (categoryId) => menuItems.filter((item) => item.categoryId === categoryId);
