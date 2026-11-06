@@ -4,7 +4,7 @@ import FeaturedCard from "../components/FeaturedCard";
 import { categories, featuredItems } from "../data/data";
 import { Link } from "@react-navigation/native";
 
-export default function HomeScreen({ navigation }) {
+export default function HomeScreen() {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
