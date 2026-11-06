@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
+import CategoryCard from "../components/CategoryCard";
 import FeaturedCard from "../components/FeaturedCard";
-import { featuredItems } from "../data/data";
+import { categories, featuredItems } from "../data/data";
 
 export default function HomeScreen() {
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.restaurantName}>Tasty Bites</Text>
                 <View style={styles.headerInfo}>
@@ -25,7 +26,14 @@ export default function HomeScreen() {
                     contentContainerStyle={styles.featuredList}
                 />
             </View>
-        </View>
+
+            <View style={styles.section}>
+                <Text style={styles.sectionTitle}>Categories</Text>
+                {categories.map((category) => (
+                    <CategoryCard key={category.id} title={category.title} />
+                ))}
+            </View>
+        </ScrollView>
     );
 }
 const styles = StyleSheet.create({
