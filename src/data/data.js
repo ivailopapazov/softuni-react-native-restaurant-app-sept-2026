@@ -1,5 +1,4 @@
 export const menuItems = [
-  // Burgers (cat-1)
   {
     id: 'item-1',
     categoryId: 'cat-1',
@@ -92,8 +91,6 @@ export const menuItems = [
     price: 6.99,
     imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400',
   },
-
-  // Drinks (cat-4)
   {
     id: 'item-12',
     categoryId: 'cat-4',
@@ -126,7 +123,6 @@ export const menuItems = [
     price: 2.49,
     imageUrl: 'https://images.unsplash.com/photo-1581636625402-29b2a704ef13?w=400',
   },
-
   // Desserts (cat-5)
   {
     id: 'item-16',
