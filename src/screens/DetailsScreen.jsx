@@ -4,6 +4,8 @@ import SizeSelector from "../components/SizeSelector";
 import ExtrasSelector from "../components/ExtrasSelector";
 import Button from "../components/Button";
 import { mealApi } from "../api";
+import QuantityStepper from "../components/QuantityStepper";
+import { calculatePrice } from "../utils/cartUtils";
 
 export const AVAILABLE_EXTRAS = [
     'Extra cheese',
@@ -18,8 +20,9 @@ export default function DetailsScreen({
     navigation,
 }) {
     const [meal, setMeal] = useState({});
-    const [size, setSize] = useState(null);
+    const [size, setSize] = useState('S');
     const [extras, setExtras] = useState([]);
+    const [qty, setQty] = useState(1);
 
     const mealId = route.params.mealId;
 
@@ -36,6 +39,8 @@ export default function DetailsScreen({
                 : [...prevExtras, extra]
         );
     };
+
+    const totalPrice = calculatePrice(meal.price || 0, size, extras, qty);
 
     return (
         <View style={styles.container}>
@@ -67,11 +72,11 @@ export default function DetailsScreen({
 
                     <View style={styles.qtySection}>
                         <Text style={styles.qtyLabel}>Quantity</Text>
-                        {/* <QuantityStepper
+                        <QuantityStepper
                             qty={qty}
-                            onIncrement={() => setQty(qty + 1)}
-                            onDecrement={() => qty > 1 && setQty(qty - 1)}
-                        /> */}
+                            onIncrement={() => setQty(q => q + 1)}
+                            onDecrement={() => setQty(q => q > 1 ? q - 1 : q)}
+                        />
                     </View>
                 </View>
             </ScrollView>
@@ -79,7 +84,7 @@ export default function DetailsScreen({
             <View style={styles.footer}>
                 <View style={styles.priceContainer}>
                     <Text style={styles.totalLabel}>Total</Text>
-                    <Text style={styles.totalPrice}>${(meal.price || 0).toFixed(2)}</Text>
+                    <Text style={styles.totalPrice}>${totalPrice.toFixed(2)}</Text>
                 </View>
                 <View style={styles.footerButtons}>
                     <Button

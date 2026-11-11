@@ -9,3 +9,12 @@ export const formatOptions = (options) => {
     
     return parts.join(' • ');
 };
+
+export const calculatePrice = (basePrice, size, extras, quantity) => {
+    const sizeMultiplier = size === 'L' ? 1.5 : size === 'M' ? 1.2 : 1;
+    const extrasPrice = extras.length * 0.5; 
+
+    const totalPrice = (basePrice * sizeMultiplier + extrasPrice) * quantity;
+
+    return totalPrice;
+}
