@@ -3,7 +3,7 @@
 ### Agenda
  - [x] Backend 
  - [x] Service Layer (Axios)
- - [ ] Pull to refresh
+ - [x] Pull to refresh
  - [ ] Create Cart logic and screens
  - [ ] Add state
  - [ ] Persist state
