@@ -1,24 +1,18 @@
 import { StyleSheet, View, ScrollView, Image, Text, Alert } from "react-native";
 import { useEffect, useState } from "react";
+import { useCart } from "../contexts/cart-context/useCart";
 import SizeSelector from "../components/SizeSelector";
 import ExtrasSelector from "../components/ExtrasSelector";
 import Button from "../components/Button";
 import { mealApi } from "../api";
 import QuantityStepper from "../components/QuantityStepper";
-import { calculatePrice } from "../utils/cartUtils";
-
-export const AVAILABLE_EXTRAS = [
-    'Extra cheese',
-    'Spicy sauce',
-    'Bacon',
-    'Avocado',
-    'Jalapeños',
-];
+import { calculatePrice, AVAILABLE_EXTRAS, calculateUnitPrice, calculateTotalPrice } from "../utils/cartUtils";
 
 export default function DetailsScreen({
     route,
     navigation,
 }) {
+    const { addToCart } = useCart();
     const [meal, setMeal] = useState({});
     const [size, setSize] = useState('S');
     const [extras, setExtras] = useState([]);
@@ -40,7 +34,24 @@ export default function DetailsScreen({
         );
     };
 
-    const totalPrice = calculatePrice(meal.price || 0, size, extras, qty);
+    const unitPrice = calculateUnitPrice(meal.price || 0, size, extras); 
+    const totalPrice = calculateTotalPrice(meal.price || 0, size, extras, qty);
+
+    const handleAddToCart = () => {
+        addToCart({
+            item: meal,
+            options: {
+                size,
+                extras,
+                qty,
+            },
+            totalPrice,
+            unitPrice,
+        });
+
+        navigation.navigate('MainStack');
+    }
+
 
     return (
         <View style={styles.container}>
@@ -89,13 +100,13 @@ export default function DetailsScreen({
                 <View style={styles.footerButtons}>
                     <Button
                         title="Add to Cart"
-                        // onPress={handleAddToCart}
+                        onPress={handleAddToCart}
                         style={styles.addButton}
                     />
                     <Button
                         title="View Cart"
                         variant="outline"
-                        onPress={() => navigation.navigate('CartModal')}
+                        onPress={() => navigation.navigate('CartMain')}
                         style={styles.viewCartButton}
                     />
                 </View>

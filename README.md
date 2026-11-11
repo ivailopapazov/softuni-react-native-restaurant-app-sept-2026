@@ -4,9 +4,9 @@
  - [x] Backend 
  - [x] Service Layer (Axios)
  - [x] Pull to refresh
- - [ ] Create Cart logic and screens
- - [ ] Add state
- - [ ] Persist state
+ - [x] Create Cart logic and screens
+ - [x] Add state
+ - [x] Persist state
  - [ ] Extract  to env variables
 
 ### TODO

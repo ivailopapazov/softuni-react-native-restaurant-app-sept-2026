@@ -8,9 +8,9 @@ export default function CartLineItem({
     onDecrement,
     onRemove,
 }) {
-    // TODO: Replace with actual item lookup
-    const item = null;
-    
+    const item = line.item;
+    const options = line.options;
+
     if (!item) return null;
 
     return (
@@ -20,9 +20,9 @@ export default function CartLineItem({
             )}
             <View style={styles.content}>
                 <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.options}>{formatOptions(line.options)}</Text>
+                <Text style={styles.options}>{formatOptions(options.extras, options.size)}</Text>
                 <View style={styles.priceRow}>
-                    <Text style={styles.price}>${line.lineTotal.toFixed(2)}</Text>
+                    <Text style={styles.price}>${line.totalPrice.toFixed(2)}</Text>
                     <Text style={styles.unitPrice}>
                         (${line.unitPrice.toFixed(2)} each)
                     </Text>
@@ -30,7 +30,7 @@ export default function CartLineItem({
             </View>
             <View style={styles.actions}>
                 <QuantityStepper
-                    qty={line.qty}
+                    qty={options.qty}
                     onIncrement={onIncrement}
                     onDecrement={onDecrement}
                     minValue={0}

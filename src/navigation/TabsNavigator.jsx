@@ -10,7 +10,7 @@ export default function TabsNavigator() {
     // const Tabs = createNativeBottomTabNavigator();
 
     return (
-        <Tabs.Navigator>
+        <Tabs.Navigator initialRouteName="HomeTab">
             <Tabs.Screen
                 name="HomeTab"
                 component={HomeNavigator}
