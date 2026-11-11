@@ -50,7 +50,7 @@ export default function HomeScreen() {
                     data={featuredItems}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => (
-                        <Link screen="Details" params={{ item }} style={{ marginRight: 12 }}>
+                        <Link screen="Details" params={{ mealId: item.id }} style={{ marginRight: 12 }}>
                             <FeaturedCard {...item} />
                         </Link>
 
